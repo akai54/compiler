@@ -1,0 +1,28 @@
+### Starting build.
+# Target: test.ml.depends, tags: { extension:ml, file:test.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules test.ml > test.ml.depends
+# Target: ast.ml.depends, tags: { extension:ml, file:ast.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules ast.ml > ast.ml.depends
+# Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends
+# Target: parser.ml.depends, tags: { extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules parser.ml > parser.ml.depends
+# Target: ast.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:ast.cmo, file:ast.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o ast.cmo ast.ml
+# Target: parser.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:parser.cmo, file:parser.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o parser.cmo parser.ml
+# Target: semantics.ml.depends, tags: { extension:ml, file:semantics.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules semantics.ml > semantics.ml.depends
+# Target: baselib.ml.depends, tags: { extension:ml, file:baselib.ml, ocaml, ocamldep, quiet }
+/home/beshoux/.opam/default/bin/ocamldep.opt -modules baselib.ml > baselib.ml.depends
+# Target: baselib.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:baselib.cmo, file:baselib.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o baselib.cmo baselib.ml
+# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml
+# Target: semantics.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:semantics.cmo, file:semantics.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o semantics.cmo semantics.ml
+# Target: test.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt -c -o test.cmo test.ml
+# Target: test.byte, tags: { byte, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet }
+/home/beshoux/.opam/default/bin/ocamlc.opt ast.cmo parser.cmo lexer.cmo baselib.cmo semantics.cmo test.cmo -o test.byte
+# Compilation successful.
