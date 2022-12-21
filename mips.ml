@@ -1,3 +1,5 @@
+let ps = Printf.sprintf
+
 type reg = V0 | A0 | SP | RA
 type label = string
 type addr = Lbl of label | Mem of reg * int
@@ -10,3 +12,6 @@ type instr =
   | Move of reg * reg
   | Jr of addr
   | Jal of label
+
+type dctv = Asciiz of string
+type dcl = label * dctv
