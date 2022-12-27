@@ -5,12 +5,10 @@ module type Parameters = sig
 end
 
 module Syntax = struct
-  type values =
+  type expr =
     | Bool of { value : bool; pos : Lexing.position }
     | Int of { value : int; pos : Lexing.position }
     | String of { value : string; pos : Lexing.position }
-
-  type expr = Val of { value : values; pos : Lexing.position }
 end
 
 module V1 = struct
