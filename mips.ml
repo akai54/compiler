@@ -26,6 +26,16 @@ let fmt_addr = function
 
 let fmt_dir = function Asciiz s -> ps ".asciiz \"%s\"" s
 
+let fmt_instr = function
+  | Addi (res, resv, rest) ->
+      ps "  addi %s, %s, %d" (fmt_reg res) (fmt_reg resv) rest
+  | La (r, addr) -> ps "  la %s, %s" (fmt_addr r) (fmt_addr addr)
+  | Li (r, i) -> ps "  li %s, %d" (fmt_addr r) i
+  | Lw (r, addr) -> ps "  lw %s %s" (fmt_addr r) (fmt_addr addr)
+  | Move (rd, rs) -> ps "  move %s, %s" (fmt_reg rd) (fmt_reg rs)
+  | Jr lbl -> ps "  jr %s" (fmt_addr lbl)
+  | Jal lbl -> ps "  jal %s" lbl
+
 let emit oc asm =
   Printf.fprintf oc ".text\n.globl main\nmain:\n";
   Printf.fprintf oc "  move $a0, $v0\n  li $v0, 1\n  syscall\n  jr $ra\n";
