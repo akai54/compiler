@@ -12,5 +12,5 @@ module Syntax = struct
 end
 
 module IR (P : Parameters) = struct
-  type expr = Value of P.value
+  type expr = Bool of bool | Int of int | String of string
 end
