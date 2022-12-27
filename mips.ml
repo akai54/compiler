@@ -19,11 +19,6 @@ type asm = { text : instr list; data : dcl list }
 
 let fmt_reg = function V0 -> "$v0" | A0 -> "$a0" | SP -> "$sp" | RA -> "$ra"
 let fmt_addr = function Lbl l -> l
-
-let fmt_instr = function
-  | Li (r, i) -> ps "  li %s, %d" (fmt_addr r) i
-  | La (r, a) -> ps "  la %s, %s" (fmt_addr r) (fmt_addr a)
-
 let fmt_dir = function Asciiz s -> ps ".asciiz \"%s\"" s
 
 let emit oc asm =
