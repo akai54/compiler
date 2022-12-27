@@ -15,14 +15,6 @@ module Syntax = struct
     | Var of { name : ident; pos : Lexing.position }
 end
 
-module V1 = struct
-  type value = Void | Int of int | Bool of bool | Str of string
-end
-
-module V2 = struct
-  type value = Void | Int of int | Bool of bool | Str of string
-end
-
 module IR (P : Parameters) = struct
   type expr = Value of P.value | Call of ident * expr list | Var of ident
 end
