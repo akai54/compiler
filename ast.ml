@@ -11,6 +11,6 @@ module Syntax = struct
     | String of { value : string; pos : Lexing.position }
 end
 
-module IR (P : Parameters) = struct
+module IR = struct
   type expr = Bool of bool | Int of int | String of string
 end
