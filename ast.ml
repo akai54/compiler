@@ -5,12 +5,25 @@ module type Parameters = sig
 end
 
 module Syntax = struct
-  type expr =
+  type values =
     | Bool of { value : bool; pos : Lexing.position }
     | Int of { value : int; pos : Lexing.position }
     | String of { value : string; pos : Lexing.position }
+
+  type expr = Val of { value : values; pos : Lexing.position }
 end
 
-module IR = struct
+module V1 = struct
+  type value = Bool of bool | Int of int | String of string
+end
+
+module V2 = struct
+  type value = Bool of bool | Int of int | String of string
+end
+
+module IR (P : Parameters) = struct
   type expr = Bool of bool | Int of int | String of string
 end
+
+module IR1 = IR (V1)
+module IR2 = IR (V2)
