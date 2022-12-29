@@ -5,10 +5,14 @@ module type Parameters = sig
 end
 
 module Syntax = struct
-  type expr =
-    | Bool of { value : bool; pos : Lexing.position }
-    | Int of { value : int; pos : Lexing.position }
-    | String of { value : string; pos : Lexing.position }
+  type value = Bool of bool | Int of int | String of string
+  type expr = Val of { value : value; pos : Lexing.position }
+
+  type instr =
+    | DecVar of { name : string; pos : Lexing.position }
+    | Assign of { var : string; expr : expr; pos : Lexing.position }
+
+  type block = instr list
 end
 
 module V1 = struct
@@ -20,7 +24,7 @@ module V2 = struct
 end
 
 module IR (P : Parameters) = struct
-  type expr = Bool of bool | Int of int | String of string
+  type expr = Val of P.value
 end
 
 module IR1 = IR (V1)
