@@ -1,13 +1,13 @@
 %{
   open Ast.Syntax
-%}
+  %}
 
 %token <bool> Lbol
 %token <bool> Ltrue
 %token <bool> Lfalse
 %token <int> Lint
 %token <string> Lstr
-%token Lvid
+%token Lvoid
 %token Lsc Lend Lvar Leq
 
 %start prog
@@ -23,16 +23,19 @@ prog:
 expr:
 | v = value {
   Val { value = v ; pos = $startpos(v) }
-}
+  }
 ;
 
 value:
-| n = Lint {
-  Int n
+| Lvoid {
+    Void
 }
 | b = Lbol {
-  Bool b
+    Bool b
 }
+| n = Lint {
+    Int n
+    }
 | s = Lstr {
-  String s
+    String s
 }

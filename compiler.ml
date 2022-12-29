@@ -9,6 +9,7 @@ let print_string = [ Li (V0, 4) ]
 
 let compile_value v env =
   match v with
+  | Void -> [ Li (V0, 0) ] @ print_int
   | Bool b -> [ Li (V0, if b then 1 else 0) ] @ print_int
   | Int n -> [ Li (V0, n) ] @ print_int
   | String d ->

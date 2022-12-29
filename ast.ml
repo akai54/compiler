@@ -5,7 +5,7 @@ module type Parameters = sig
 end
 
 module Syntax = struct
-  type value = Bool of bool | Int of int | String of string
+  type value = Void | Bool of bool | Int of int | String of string
   type expr = Val of { value : value; pos : Lexing.position }
 
   type instr =
@@ -16,11 +16,11 @@ module Syntax = struct
 end
 
 module V1 = struct
-  type value = Bool of bool | Int of int | String of string
+  type value = Void | Bool of bool | Int of int | String of string
 end
 
 module V2 = struct
-  type value = Bool of bool | Int of int | String of string
+  type value = Void | Bool of bool | Int of int | String of string
 end
 
 module IR (P : Parameters) = struct

@@ -5,6 +5,7 @@ let collect_constant_strings code =
   let counter = ref (-1) in
   let ccs_value v env =
     match v with
+    | V1.Void -> (V2.Void, env)
     | V1.Bool b -> (V2.Bool b, env)
     | V1.Int n -> (V2.Int n, env)
     | V1.String s -> (
