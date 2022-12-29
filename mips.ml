@@ -8,6 +8,7 @@ type instr =
   | Addi of reg * reg * int
   | La of reg * addr
   | Li of reg * int
+  | Sw of reg * addr
   | Lw of reg * addr
   | Move of reg * reg
   | Jr of addr
@@ -41,6 +42,7 @@ let fmt_instr mips_instr =
   | Jr lbl -> ps "  jr %s" (fmt_addr lbl)
   | Move (rd, rs) -> ps "  move %s, %s" (fmt_reg rd) (fmt_reg rs)
   | Jal lbl -> ps "  jal %s" lbl
+  | Sw (r, l) -> ps "  sw %s, %s" (fmt_reg r) (fmt_addr l)
 
 let emit oc asm =
   Printf.fprintf oc ".text\n.globl main\nmain:\n";
