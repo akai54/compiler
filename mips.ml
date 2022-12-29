@@ -1,6 +1,6 @@
 let ps = Printf.sprintf
 
-type reg = V0 | A0 | SP | RA
+type reg = V0 | A0 | SP | RA | FP
 type label = string
 type addr = Lbl of label | Reg of reg | Mem of reg * int
 
@@ -17,7 +17,12 @@ type dctv = Asciiz of string
 type dcl = label * dctv
 type asm = { text : instr list; data : dcl list }
 
-let fmt_reg = function V0 -> "$v0" | A0 -> "$a0" | SP -> "$sp" | RA -> "$ra"
+let fmt_reg = function
+  | V0 -> "$v0"
+  | A0 -> "$a0"
+  | SP -> "$sp"
+  | RA -> "$ra"
+  | FP -> "$fp"
 
 let fmt_addr = function
   | Lbl l -> l
