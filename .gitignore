@@ -4,3 +4,4 @@ projet.opam
 _build/*
 *.cmi
 main.byte
+prog.asm

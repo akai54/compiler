@@ -19,5 +19,6 @@ let compile_expr e env = match e with Val v -> compile_value v env
 let compile (ir, data) =
   {
     text = Baselib.builtins @ compile_expr ir data;
-    data = [ ("test", Asciiz "\\n") ];
+    data =
+      List.map (fun (l, s) -> (s, Asciiz l)) (List.of_seq (Env.to_seq data));
   }
